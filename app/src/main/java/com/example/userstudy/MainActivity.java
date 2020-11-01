@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements INetworkCallback 
             }
         });
 
+
+
 //        YTSensorManager.getInstance().setSensorCallback(this);
     }
 
@@ -222,15 +224,6 @@ public class MainActivity extends AppCompatActivity implements INetworkCallback 
             List<Surface> outputSurfaces = new ArrayList<Surface>(2);
             outputSurfaces.add(imageReader.getSurface());
             outputSurfaces.add(new Surface(textureView.getSurfaceTexture()));
-//            captureRequestBuilder.addTarget(imageReader.getSurface());
-//            captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CameraMetadata.CONTROL_AE_MODE_OFF);
-//            captureRequestBuilder.set(CaptureRequest.LENS_FOCUS_DISTANCE, 0.5f);
-//            Log.e("QinTue", "----------------");
-//            Log.e("QinYue", String.valueOf(captureRequestBuilder.get(CaptureRequest.CONTROL_AE_MODE)));
-//            Log.e("QinYue", String.valueOf(captureRequestBuilder.get(CaptureRequest.CONTROL_AF_MODE)));
-//            Log.e("QinYue", String.valueOf(captureRequestBuilder.get(CaptureRequest.CONTROL_AF_REGIONS)));
-//            Log.e("QinYue", String.valueOf(captureRequestBuilder.get(CaptureRequest.LENS_FOCUS_DISTANCE)));
-//            updatePreview();
 
             final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
             captureBuilder.addTarget(imageReader.getSurface());
@@ -386,6 +379,8 @@ public class MainActivity extends AppCompatActivity implements INetworkCallback 
             public void run() {
                 try {
                     captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_AUTO);
+//                    captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CameraMetadata.CONTROL_AE_MODE_OFF);
+//                    captureRequestBuilder.set(CaptureRequest.LENS_FOCUS_DISTANCE, 0.5f);
                     try {
                         cameraCaptureSessions.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
                     } catch (CameraAccessException e) {
@@ -395,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements INetworkCallback 
                     Log.e(TAG, "Failed to start camera preview.", e);
                 }
             }
-        }, 500);
+        }, 10);
 
 
         Log.i("YueTing", "updatePreview");
